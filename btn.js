@@ -20,3 +20,36 @@ function btnshaow(deta){
       btncontainer.appendChild(divbtn)
     }
 }
+
+fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+.then(Response =>Response.json())
+.then(Deta=>videoShow(Deta.videos));
+
+const videoShow = (picture)=>{
+  
+  picture.forEach(element => {
+    console.log(element);
+    const videoContainer=document.getElementById("video-container")
+    const divConteiner = document.createElement("div")
+    divConteiner.innerHTML=`
+    
+    <div class="card bg-base-100 w-96 shadow-sm">
+  <figure>
+    <img
+      src="${element.thumbnail}"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${element.title}</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+    `
+    videoContainer.appendChild(divConteiner)
+    
+  });
+  
+}
