@@ -29,22 +29,32 @@ const videoShow = (picture)=>{
   
   picture.forEach(element => {
     console.log(element);
+    
     const videoContainer=document.getElementById("video-container")
     const divConteiner = document.createElement("div")
     divConteiner.innerHTML=`
-    
-    <div class="card bg-base-100 w-96 shadow-sm">
+
+    <div class="card   ">
   <figure>
-    <img
+    <img class ="object-cover w-[312px] h-[200px]"
       src="${element.thumbnail}"
-      alt="Shoes" />
+      alt="video" />
   </figure>
-  <div class="card-body">
-    <h2 class="card-title">${element.title}</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
+  <div class="card-body ">
+    <div class="flex gap-3">
+    <div>
+    <div class="avatar w-10">
+  <div class="ring-primary ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
+    <img src="${element.authors[0].profile_picture}" />
+  </div>
+</div>
+</div>
+    <div>
+    <h2 class="card-title font-bold">${element.title}</h2>
+    <h5>${element.authors[0].profile_name}</h5>
+    <span>${element.others.views}</span>
     </div>
+  </div>
   </div>
 </div>
     `
