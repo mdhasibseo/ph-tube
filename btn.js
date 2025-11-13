@@ -15,24 +15,39 @@ function btnshaow(deta){
         
       const divbtn = document.createElement("div")
       divbtn.innerHTML=`
-      <button onclick="loadId(${singlebtn.category_id})" class="btn hover:bg-red-600 hover:text-white hover:transition delay-150 duration-500">${singlebtn.category}</button>
+      <button onclick="loadId(${singlebtn.category_id}) "  class="btn color-btn hover:bg-red-600 hover:text-white hover:transition delay-150 duration-500">${singlebtn.category}</button>
 
       `
+     
       btncontainer.appendChild(divbtn)
     }
 }
 
+
+
 const loadId =(id)=>{
-  console.log(id);
+  
   const uRl=`https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
-  console.log(uRl);
+  
   fetch(uRl)
   .then(rEs=>rEs.json())
-  .then(net=>videoShow(net.category)
+  .then(net=>{
+    videoShow(net.category)
+  if(id===1005){
+    
+     const noContent = document.getElementById("noContent")
+     const content = document.createElement("div")
+     content.innerHTML=`<div class="flex flex-col items-center justify-center  pt-5">
+                <img class=" w-[120px] py-8" src="Icon.png" alt="">
+                <p class="font-bold text-2xl text-center">Oops!! Sorry, There is no content here</p>
+            </div>`
+     noContent.appendChild(content)
+  }}
   )
   
   
 }
+
 
 function videoS(){
 fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
@@ -40,15 +55,19 @@ fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
 .then(Deta=>videoShow(Deta.videos));
 }
 const videoShow = (picture)=>{
+
  const videoContainer=document.getElementById("video-container")
   videoContainer.innerHTML = " "
+  const mainDiv = document.getElementById("noContent")
+ mainDiv.innerHTML=" " 
+  
   picture.forEach(element => {
    
     
     
     
     const divConteiner = document.createElement("div")
-    
+   
     divConteiner.innerHTML=`
 
     <div class="card   ">
@@ -83,6 +102,7 @@ const videoShow = (picture)=>{
     
   }
 );
+ 
   
   
 }
